@@ -228,6 +228,7 @@
         "compression",
         "cookie-parser",
         "express-jwt",
+        "redis",
         "universal-analytics",
         "cross-env",
         "socket.io",
