@@ -1,7 +1,7 @@
 import models from "./schemas/Models";
 //dependencies
 const express = require(`express`);
-const Logger = require(`lionsoft-common-bin`).Logger;
+// const console = require(`lionsoft-common-bin`).console;
 const ip = require(`ip`);
 const cookieParser = require(`cookie-parser`);
 const bodyParser = require(`body-parser`);
@@ -83,24 +83,24 @@ const App = class App {
 		// Start the express server.
 		_this._httpServer = _this._expressServer.listen(_this._port, _this._host, (err) => {
 			if (err) {
-				Logger.log(err.message, `error`);
+				console.log(err.message, `error`);
 				return err;
 			}
 
-			Logger.log(`Server started!`, `success`);
+			console.log(`Server started!`, `success`);
 
 			// Connect to ngrok in dev mode
 			if (ngrok) {
 				ngrok.connect(_this._port, (innerErr) => {
 					if (innerErr) {
-						Logger.log(innerErr, `error`);
+						console.log(innerErr, `error`);
 						return innerErr;
 					}
 
-					Logger.log(`Tunnel initialised.`, `success`);
+					console.log(`Tunnel initialised.`, `success`);
 				});
 			}
-			Logger.log(`
+			console.log(`
 				Access URLs:
 				Localhost:  http://${_this._host}:${_this._port}
 				LAN: http://${ip.address()}:${_this._port}
@@ -132,7 +132,7 @@ const App = class App {
 
 		// uncomment after placing your favicon in /public
 		//app.use(favicon(path.join(__dirname, `public`, `favicon.ico`)));
-		// app.use(logger(`dev`));
+		// app.use(console(`dev`));
 		server.use(bodyParser.json());
 		server.use(bodyParser.urlencoded({ extended: false }));
 		server.use(cookieParser());
@@ -159,7 +159,7 @@ const App = class App {
 		const _this = this;
 
 		_this._socketServer = new SocketServer(_this._httpServer);
-		Logger.log(`Socket server initialized on path ${_this._socketServer._path}`, `info`);
+		console.log(`Socket server initialized on path ${_this._socketServer._path}`, `info`);
 	}
 };
 

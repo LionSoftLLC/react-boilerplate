@@ -1,5 +1,5 @@
 //dependencies
-const Logger = require(`lionsoft-common-bin`).Logger;
+// const Logger = require(`lionsoft-common-bin`).console;
 
 //local dependencies
 const CartEvents = require(`./../events/CartEvents`).default;
@@ -22,9 +22,9 @@ const PushNamespace = class PushNamespace {
 			clientSocket.on(`disconnect`, () => _this._handleClientDisconnect(clientSocket));
 			clientSocket.on(`join`, (roomName) => _this._handleClientJoinRoom(clientSocket, roomName));
 
-			Logger.log(`==================================`, `debug`);
-			Logger.log(`Client connected to cart namespace`, `debug`);
-			Logger.log(`==================================`, `debug`);
+			console.log(`==================================`, `debug`);
+			console.log(`Client connected to cart namespace`, `debug`);
+			console.log(`==================================`, `debug`);
 		});
 
 		CartEvents.setCartItemAddedHandler(_this._handleSendPush.bind(_this));
@@ -38,7 +38,7 @@ const PushNamespace = class PushNamespace {
 	_handleSendPush(addedItem, email) {
 		// preserve context
 		const _this = this;
-		Logger.log(`socket item added.`, `debug`);
+		console.log(`socket item added.`, `debug`);
 		_this._nsp.to(email).emit(`item-added`, { item: { ...addedItem }, email });
 	}
 
@@ -54,7 +54,7 @@ const PushNamespace = class PushNamespace {
 	////////////////////
 
 	_handleClientDisconnect(clientSocket) {
-		Logger.log(`Client disconnected from cart namespace`);
+		console.log(`Client disconnected from cart namespace`);
 	}
 
 	_handleClientJoinRoom(clientSocket, roomName) {

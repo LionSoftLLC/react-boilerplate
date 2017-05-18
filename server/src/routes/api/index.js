@@ -1,6 +1,6 @@
 /* dependencies */
-import { Logger } from 'lionsoft-common-bin';
-import { Mixins } from 'lionsoft-node-bin';
+// import { Logger } from 'lionsoft-common-bin';
+// import { Mixins } from 'lionsoft-node-bin';
 const express = require(`express`);
 const jwt = require(`express-jwt`);
 const bodyParser = require(`body-parser`);

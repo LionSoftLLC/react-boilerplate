@@ -1,6 +1,6 @@
 //dependencies
 const IOServer = require(`socket.io`);
-const Logger = require(`lionsoft-common-bin`).Logger;
+// const console = require(`lionsoft-common-bin`).console;
 
 //local dependencies
 // const CartNamespace = require(`./CartNamespace`).default;
@@ -55,7 +55,7 @@ const SocketServer = class SocketServer {
 		_this._server.on(`connection`, (clientSocket) => {
 			clientSocket.on(`push-notification-send`, (data) => {
 				const { notifHeader, notifBody, selectedEmail } = data;
-				Logger.log(`emitting notification to: ${selectedEmail}`, `debug`);
+				console.log(`emitting notification to: ${selectedEmail}`, `debug`);
 
 				_this._server.to(selectedEmail).emit(`push-notification-received`, { notifHeader, notifBody, from: `admin` });
 			});
@@ -64,9 +64,9 @@ const SocketServer = class SocketServer {
 				_this._handleClientJoinRoom(clientSocket, selectedEmail);
 			});
 
-			Logger.log(`==================================`, `debug`);
-			Logger.log(`Client connected to default namespace`, `debug`);
-			Logger.log(`==================================`, `debug`);
+			console.log(`==================================`, `debug`);
+			console.log(`Client connected to default namespace`, `debug`);
+			console.log(`==================================`, `debug`);
 		});
 	}
 
